@@ -6,8 +6,6 @@ import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/data/repository/data_auth_repository.dart';
 import 'package:etiquette/data/repository/data_learning_repository.dart';
 import 'package:etiquette/data/repository/data_quiz_repository.dart';
-import 'package:etiquette/data/repository/mock_learning_repository.dart';
-import 'package:etiquette/data/repository/mock_quiz_repository.dart';
 import 'package:etiquette/domain/repository/auth_repository.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:etiquette/domain/repository/quiz_repository.dart';

@@ -13,7 +13,7 @@ class LearningNetworkProvider {
 
   Future<Lesson> getLessonById(int lessonId) async {
     var response = await _dio.get(
-      'api/learning/get_lesson/',
+      'learning/get_lesson',
       queryParameters: {
         'id': lessonId,
       },
@@ -24,7 +24,7 @@ class LearningNetworkProvider {
 
   Future<List<Lesson>> getLessons(int moduleId) async {
     var response = await _dio.get(
-      'api/learning/get_lessons_by_module/',
+      'learning/get_lessons_by_module',
       queryParameters: {
         'module_id': moduleId,
       },
@@ -35,7 +35,7 @@ class LearningNetworkProvider {
 
   Future<List<Level>> getLevels(int positionId) async {
     var response = await _dio.get(
-      'api/learning/get_levels/',
+      'learning/get_levels',
       queryParameters: {
         'position_id': positionId,
       },
@@ -84,7 +84,7 @@ class LearningNetworkProvider {
     return Level(
       id: e['id'],
       sections: (e['sections'] as List).map((e) => _parseSection(e)).toList(),
-      isUnlocked: e['isUnlocked'],
+      isUnlocked: e['is_unlocked'],
     );
   }
 

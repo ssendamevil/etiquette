@@ -12,7 +12,7 @@ class QuizNetworkProvider {
 
   Future<Quiz> getQuiz(int quizId) async {
     var response = await _dio.get(
-      'api/quizzes/get_quiz/',
+      'quizzes/get_quiz',
       queryParameters: {
         'id': quizId,
       },
@@ -23,7 +23,7 @@ class QuizNetworkProvider {
   
   Future<int> checkResult(int quizId, HashMap<int, int> completedQuiz) async{
     var response = await _dio.post(
-      'api/quizzes/check_result/',
+      'quizzes/check_result',
       data: {
         'quiz_id': quizId,
         'answers': completedQuiz,
