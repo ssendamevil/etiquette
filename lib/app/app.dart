@@ -4,6 +4,8 @@ import 'package:etiquette/app/page/login_page.dart';
 import 'package:etiquette/app/page/position_type_page.dart';
 import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/data/repository/data_auth_repository.dart';
+import 'package:etiquette/data/repository/data_learning_repository.dart';
+import 'package:etiquette/data/repository/data_quiz_repository.dart';
 import 'package:etiquette/data/repository/mock_learning_repository.dart';
 import 'package:etiquette/data/repository/mock_quiz_repository.dart';
 import 'package:etiquette/domain/repository/auth_repository.dart';
@@ -30,10 +32,10 @@ class App extends StatelessWidget {
           create: (context) => DataAuthRepository(_dio),
         ),
         RepositoryProvider<LearningRepository>(
-          create: (context) => MockLearningRepository(),
+          create: (context) => DataLearningRepository(_dio),
         ),
         RepositoryProvider<QuizRepository>(
-          create: (context) => MockQuizRepository(),
+          create: (context) => DataQuizRepository(_dio),
         ),
       ],
       child: const AppView(),
@@ -65,7 +67,7 @@ class AppViewState extends State<AppView> {
   Widget _getFirstPage() {
     if (!BoxHelper.hasToken()) {
       return const LoginPage();
-    } else if (BoxHelper.getPositionType() == null &&
+    } else if (BoxHelper.getPositionType() == null ||
         BoxHelper.getPositionId() == null) {
       return const PositionTypePage();
     }

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:etiquette/data/db/entity/token_entity.dart';
 import 'package:etiquette/data/db/hive_token_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:etiquette/data/db/hives.dart';
@@ -32,6 +33,10 @@ class AppInitializer{
 
     final dio = Dio(options);
     dio.interceptors.add(fresh);
+    if (kDebugMode) {
+      dio.interceptors
+          .add(LogInterceptor(requestBody: true, responseBody: true));
+    }
 
     return dio;
   }

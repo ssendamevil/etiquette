@@ -46,7 +46,7 @@ class LearningNetworkProvider {
 
   Future<List<Position>> getPositions(int typeId) async {
     var response = await _dio.get(
-      'api/learning/get_positions/',
+      'learning/get_positions',
       queryParameters: {
         'type_id': typeId,
       },

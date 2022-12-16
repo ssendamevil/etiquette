@@ -37,6 +37,7 @@ dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   dio: ^4.0.6
+  dio_logging_interceptor: ^1.0.1
   hive_flutter: ^1.1.0
   fresh: ^0.4.1
   fresh_dio: ^0.3.2
