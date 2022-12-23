@@ -18,9 +18,7 @@ class LessonCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: //NetworkImage(lesson.videoPreview),
-                //TODO: get image from network
-                AssetImage(lesson.videoPreview),
+                image: NetworkImage(lesson.videoPreview),
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.topCenter,
               ),

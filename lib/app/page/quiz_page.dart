@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:etiquette/app/bloc/quiz/quiz_bloc.dart';
 import 'package:etiquette/app/page/learning_page.dart';
 import 'package:etiquette/domain/repository/quiz_repository.dart';
@@ -39,7 +37,7 @@ class QuizViewState extends State<QuizView> {
   late int timerSeconds;
   late int timerMilliseconds;
   List<List<bool>>? checkboxVars;
-  late HashMap<int, int> answers;
+  List<int>? answers;
 
   @override
   void initState() {
@@ -49,7 +47,6 @@ class QuizViewState extends State<QuizView> {
     timerMinutes = 15;
     timerSeconds = 0;
     timerMilliseconds = 0;
-    answers = HashMap<int, int>();
   }
 
   @override
@@ -201,6 +198,7 @@ class QuizViewState extends State<QuizView> {
                     );
                   case QuizStateType.success:
                     var quiz = state.quiz;
+                    answers ??= List.filled(quiz!.questions.length, 0);
                     checkboxVars ??= List.generate(
                       quiz!.questions.length,
                       (i) => List.generate(
@@ -435,10 +433,10 @@ class QuizViewState extends State<QuizView> {
                                       );
                                       checkboxVars![currentQuestion][index] =
                                           true;
-                                      answers[quiz
-                                              .questions[currentQuestion].id] =
-                                          quiz.questions[currentQuestion]
-                                              .options[index].id;
+                                      answers![currentQuestion] = quiz
+                                          .questions[currentQuestion]
+                                          .options[index]
+                                          .id;
                                     });
                                   }),
                               separatorBuilder: (context, index) =>
@@ -453,10 +451,8 @@ class QuizViewState extends State<QuizView> {
                                   children: [
                                     Expanded(
                                       child: ElevatedButton(
-                                        onPressed: (answers[quiz
-                                                    .questions[currentQuestion]
-                                                    .id] !=
-                                                null)
+                                        onPressed: (answers![currentQuestion] !=
+                                                0)
                                             ? () => setState(
                                                   () {
                                                     if (currentQuestion ==

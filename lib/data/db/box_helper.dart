@@ -30,7 +30,7 @@ class BoxHelper{
   }
 
   static void savePositionType(int typeId){
-    Hive.box(Hives.boxLearning).put(Hives.keyPositionId, typeId);
+    Hive.box(Hives.boxLearning).put(Hives.keyPositionType, typeId);
   }
 
   static void savePositionId(int positionId){

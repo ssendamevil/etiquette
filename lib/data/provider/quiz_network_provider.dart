@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:dio/dio.dart';
 import 'package:etiquette/domain/model/question.dart';
 import 'package:etiquette/domain/model/question_option.dart';
@@ -12,7 +10,7 @@ class QuizNetworkProvider {
 
   Future<Quiz> getQuiz(int quizId) async {
     var response = await _dio.get(
-      'quizzes/get_quiz',
+      'quizzes/get_quiz/',
       queryParameters: {
         'id': quizId,
       },
@@ -21,16 +19,16 @@ class QuizNetworkProvider {
     return _parseQuiz(response.data);
   }
   
-  Future<int> checkResult(int quizId, HashMap<int, int> completedQuiz) async{
+  Future<int> checkResult(int quizId, List<int>? completedQuiz) async{
     var response = await _dio.post(
-      'quizzes/check_result',
+      'quizzes/check_result/',
       data: {
         'quiz_id': quizId,
         'answers': completedQuiz,
       },
     );
     
-    return int.parse(response.data['result'].toString());
+    return int.parse(response.data.toString());
   }
 
   Quiz _parseQuiz(dynamic e) {

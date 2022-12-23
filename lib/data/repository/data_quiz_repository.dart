@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:dio/dio.dart';
 import 'package:etiquette/data/provider/quiz_network_provider.dart';
 import 'package:etiquette/domain/model/quiz.dart';
@@ -12,7 +10,7 @@ class DataQuizRepository extends QuizRepository{
   DataQuizRepository(Dio dio) : _quizNetworkProvider = QuizNetworkProvider(dio);
 
   @override
-  Future<int> checkResult(int quizId, HashMap<int, int> completedQuiz) {
+  Future<int> checkResult(int quizId, List<int>? completedQuiz) {
     return _quizNetworkProvider.checkResult(quizId, completedQuiz);
   }
 

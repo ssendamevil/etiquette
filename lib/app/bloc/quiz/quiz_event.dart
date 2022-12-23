@@ -17,7 +17,7 @@ class QuizStarted extends QuizEvent{
 class QuizCompleted extends QuizEvent{
 
   final int quizId;
-  final HashMap<int, int> completedQuiz;
+  final List<int>? completedQuiz;
 
   const QuizCompleted(this.quizId, this.completedQuiz);
 

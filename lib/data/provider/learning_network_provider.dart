@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/domain/model/attachment.dart';
 import 'package:etiquette/domain/model/lesson.dart';
 import 'package:etiquette/domain/model/level.dart';
@@ -13,9 +14,10 @@ class LearningNetworkProvider {
 
   Future<Lesson> getLessonById(int lessonId) async {
     var response = await _dio.get(
-      'learning/get_lesson',
+      'learning/get_lesson/',
       queryParameters: {
         'id': lessonId,
+        'position_id': BoxHelper.getPositionId()
       },
     );
 
@@ -24,7 +26,7 @@ class LearningNetworkProvider {
 
   Future<List<Lesson>> getLessons(int moduleId) async {
     var response = await _dio.get(
-      'learning/get_lessons_by_module',
+      'learning/get_lessons_by_module/',
       queryParameters: {
         'module_id': moduleId,
       },
@@ -35,7 +37,7 @@ class LearningNetworkProvider {
 
   Future<List<Level>> getLevels(int positionId) async {
     var response = await _dio.get(
-      'learning/get_levels',
+      'learning/get_levels/',
       queryParameters: {
         'position_id': positionId,
       },
@@ -46,7 +48,7 @@ class LearningNetworkProvider {
 
   Future<List<Position>> getPositions(int typeId) async {
     var response = await _dio.get(
-      'learning/get_positions',
+      'learning/get_positions/',
       queryParameters: {
         'type_id': typeId,
       },
@@ -56,6 +58,7 @@ class LearningNetworkProvider {
   }
 
   Lesson _parseLesson(dynamic e) {
+    var attachments = e['attachments'] ?? [];
     return Lesson(
       id: e['id'],
       title: e['title'],
@@ -68,7 +71,7 @@ class LearningNetworkProvider {
       isFavourite: e['is_favourite'],
       time: e['time'],
       attachments:
-          (e['attachments'] as List).map((e) => _parseAttachment(e)).toList(),
+          (attachments as List).map((e) => _parseAttachment(e)).toList(),
     );
   }
 

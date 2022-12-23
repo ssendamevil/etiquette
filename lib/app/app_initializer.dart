@@ -46,7 +46,7 @@ class AppInitializer{
       Dio httpClient,
       ) async {
     final response = await httpClient.post(
-      '$_host/users/refresh_token/',
+      '${_host}users/refresh_token/',
       data: {
         'refresh': token?.refreshToken,
       },

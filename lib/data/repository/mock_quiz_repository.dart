@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:etiquette/domain/model/question.dart';
 import 'package:etiquette/domain/model/question_option.dart';
 import 'package:etiquette/domain/model/quiz.dart';
@@ -9,7 +7,7 @@ class MockQuizRepository extends QuizRepository {
   bool isFailed = true;
 
   @override
-  Future<int> checkResult(int quizId, HashMap<int, int> completedQuiz) {
+  Future<int> checkResult(int quizId, List<int>? completedQuiz) {
     isFailed = !isFailed;
     return Future.delayed(
       const Duration(seconds: 2),
