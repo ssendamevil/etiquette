@@ -30,6 +30,7 @@ class MockLearningRepository extends LearningRepository {
                   Section(
                     id: 1,
                     title: 'Название раздела',
+                    isUnlocked: true,
                     modules: List.of([
                       const Module(
                         id: 1,
@@ -56,6 +57,7 @@ class MockLearningRepository extends LearningRepository {
                   Section(
                     id: 2,
                     title: 'Название раздела',
+                    isUnlocked: true,
                     modules: List.of([
                       const Module(
                         id: 3,
@@ -88,6 +90,7 @@ class MockLearningRepository extends LearningRepository {
                   Section(
                     id: 3,
                     title: 'Название раздела',
+                    isUnlocked: true,
                     modules: List.of([
                       const Module(
                         id: 5,
@@ -114,6 +117,7 @@ class MockLearningRepository extends LearningRepository {
                   Section(
                     id: 4,
                     title: 'Название раздела',
+                    isUnlocked: false,
                     modules: List.of([
                       const Module(
                         id: 7,
@@ -146,6 +150,7 @@ class MockLearningRepository extends LearningRepository {
                   Section(
                     id: 5,
                     title: 'Название раздела',
+                    isUnlocked: false,
                     modules: List.of([
                       const Module(
                         id: 9,
@@ -172,6 +177,7 @@ class MockLearningRepository extends LearningRepository {
                   Section(
                     id: 6,
                     title: 'Название раздела',
+                    isUnlocked: false,
                     modules: List.of([
                       const Module(
                         id: 11,

@@ -13,6 +13,7 @@ class Lesson extends Equatable {
   final int? attachmentsNumber;
   final bool? isFavourite;
   final bool? isComplete;
+  final bool? isQuizUnlocked;
 
   const Lesson({
     required this.id,
@@ -26,6 +27,7 @@ class Lesson extends Equatable {
     this.attachmentsNumber,
     this.isFavourite,
     this.isComplete,
+    this.isQuizUnlocked,
   });
 
   @override

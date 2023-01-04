@@ -72,6 +72,7 @@ class LearningNetworkProvider {
       time: e['time'],
       attachments:
           (attachments as List).map((e) => _parseAttachment(e)).toList(),
+      isQuizUnlocked: e['is_quiz_unlocked']
     );
   }
 
@@ -96,6 +97,7 @@ class LearningNetworkProvider {
       id: e['id'],
       modules: (e['modules'] as List).map((e) => _parseModule(e)).toList(),
       title: e['title'],
+      isUnlocked: e['is_unlocked']
     );
   }
 

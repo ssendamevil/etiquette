@@ -1,7 +1,5 @@
 import 'package:etiquette/app/bloc/lessons_list/lessons_list_bloc.dart';
-import 'package:etiquette/app/components/lesson_card.dart';
-import 'package:etiquette/app/page/lesson_page.dart';
-import 'package:etiquette/app/page/quiz_page.dart';
+import 'package:etiquette/app/components/lessons_list_content.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,12 +9,14 @@ class LessonsListPage extends StatelessWidget {
   final int quizId;
   final int sectionNumber;
   final int moduleNumber;
+  final bool isTestPassed;
 
   const LessonsListPage(
     this.moduleId,
     this.quizId,
     this.sectionNumber,
-    this.moduleNumber, {
+    this.moduleNumber,
+    this.isTestPassed, {
     Key? key,
   }) : super(key: key);
 
@@ -24,7 +24,8 @@ class LessonsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LessonsListBloc>(
       create: (context) => LessonsListBloc(context.read<LearningRepository>()),
-      child: LessonsListView(moduleId, quizId, sectionNumber, moduleNumber),
+      child: LessonsListView(
+          moduleId, quizId, sectionNumber, moduleNumber, isTestPassed),
     );
   }
 }
@@ -34,12 +35,14 @@ class LessonsListView extends StatefulWidget {
   final int quizId;
   final int sectionNumber;
   final int moduleNumber;
+  final bool isTestPassed;
 
   const LessonsListView(
     this.moduleId,
     this.quizId,
     this.sectionNumber,
-    this.moduleNumber, {
+    this.moduleNumber,
+    this.isTestPassed, {
     Key? key,
   }) : super(key: key);
 
@@ -107,83 +110,28 @@ class LessonsListViewState extends State<LessonsListView> {
                     case LessonsListStateType.initial:
                       return Container();
                     case LessonsListStateType.inProgress:
-                      return Container();
+                      if (state.lessons == null) {
+                        return Container();
+                      }
+                      return LessonsListContent(
+                        widget.moduleId,
+                        _bloc,
+                        state.lessons!,
+                        widget.quizId,
+                        widget.isTestPassed,
+                      );
                     case LessonsListStateType.failure:
                       return Center(
                         child: Text(state.failureMessage!),
                       );
                     case LessonsListStateType.success:
                       var lessons = state.lessons;
-                      return ListView.separated(
-                        padding: const EdgeInsets.all(0),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          if (index == lessons!.length) {
-                            return Column(
-                              children: [
-                                const SizedBox(height: 15),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (context) => QuizPage(
-                                              widget.quizId,
-                                            ),
-                                          ),
-                                        ),
-                                        style: ElevatedButton.styleFrom(
-                                          primary: const Color(0xFFE7B638),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                        child: const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: 14.5,
-                                          ),
-                                          child: Text(
-                                            'Пройти тест',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'RF Dewi',
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 65),
-                              ],
-                            );
-                          }
-                          return ElevatedButton(
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    LessonPage(lessons[index].id, index + 1),
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: const EdgeInsets.all(0),
-                            ),
-                            child: LessonCard(lessons[index], index + 1),
-                          );
-                        },
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: 20),
-                        itemCount: lessons!.length + 1,
+                      return LessonsListContent(
+                        widget.moduleId,
+                        _bloc,
+                        lessons!,
+                        widget.quizId,
+                        widget.isTestPassed,
                       );
                   }
                 },

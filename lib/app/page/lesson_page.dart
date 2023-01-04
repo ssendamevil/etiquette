@@ -1,17 +1,18 @@
+import 'package:chewie/chewie.dart';
 import 'package:etiquette/app/bloc/lesson/lesson_bloc.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_player/video_player.dart';
 
 class LessonPage extends StatelessWidget {
   final int lessonId;
   final int lessonNumber;
 
-  const LessonPage(
-    this.lessonId,
-    this.lessonNumber, {
-    Key? key,
-  }) : super(key: key);
+  const LessonPage(this.lessonId,
+      this.lessonNumber, {
+        Key? key,
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +27,10 @@ class LessonView extends StatefulWidget {
   final int lessonId;
   final int lessonNumber;
 
-  const LessonView(
-    this.lessonId,
-    this.lessonNumber, {
-    Key? key,
-  }) : super(key: key);
+  const LessonView(this.lessonId,
+      this.lessonNumber, {
+        Key? key,
+      }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -40,12 +40,21 @@ class LessonView extends StatefulWidget {
 
 class LessonViewState extends State<LessonView> {
   late LessonBloc _bloc;
+  late VideoPlayerController _videoPlayerController;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
     super.initState();
     _bloc = context.read<LessonBloc>()
       ..add(LessonStartedEvent(widget.lessonId));
+  }
+
+  @override
+  void dispose() {
+    _chewieController.dispose();
+    _videoPlayerController.dispose();
+    super.dispose();
   }
 
   @override
@@ -78,7 +87,7 @@ class LessonViewState extends State<LessonView> {
                   ),
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: () {},
                   radius: 17.5,
                   child: Image.asset('assets/question.png'),
                 ),
@@ -98,6 +107,13 @@ class LessonViewState extends State<LessonView> {
                   );
                 case LessonStateType.success:
                   var lesson = state.lesson!;
+                  _videoPlayerController =
+                      VideoPlayerController.network(lesson.videoFile!);
+                  _chewieController = ChewieController(
+                    videoPlayerController: _videoPlayerController,
+                    looping: false,
+                    autoPlay: false,
+                  );
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 17,
@@ -129,7 +145,6 @@ class LessonViewState extends State<LessonView> {
                             fontFamily: 'Geometria',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
-
                           ),
                         ),
                         const SizedBox(height: 25.295),
@@ -140,14 +155,9 @@ class LessonViewState extends State<LessonView> {
                             height: 189,
                             child: Container(
                               decoration: BoxDecoration(
-                                image: const DecorationImage(
-                                  image: AssetImage(
-                                    'assets/test_video_preview.png',
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
                                 borderRadius: BorderRadius.circular(10),
                               ),
+                              child: Chewie(controller: _chewieController),
                             ),
                           ),
                         ),
@@ -170,34 +180,37 @@ class LessonViewState extends State<LessonView> {
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             padding: const EdgeInsets.all(0),
-                            itemBuilder: (context, index) => Center(
-                              child: Row(
-                                mainAxisAlignment:
+                            itemBuilder: (context, index) =>
+                                Center(
+                                  child: Row(
+                                    mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [
-                                  InkWell(
-                                    onTap: () {},
-                                    child: Text(
-                                      lesson.attachments![index].title,
-                                      style: const TextStyle(
-                                        color: Color(0xFFE7B638),
-                                        fontFamily: 'Geometria',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        decoration: TextDecoration.underline,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Text(
+                                          lesson.attachments![index].title,
+                                          style: const TextStyle(
+                                            color: Color(0xFFE7B638),
+                                            fontFamily: 'Geometria',
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            decoration: TextDecoration
+                                                .underline,
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      InkWell(
+                                        onTap: () {},
+                                        radius: 18,
+                                        child: Image.asset(
+                                            'assets/download.png'),
+                                      ),
+                                    ],
                                   ),
-                                  InkWell(
-                                    onTap: () {},
-                                    radius: 18,
-                                    child: Image.asset('assets/download.png'),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                ),
                             separatorBuilder: (context, index) =>
-                                const SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             itemCount: lesson.attachments!.length,
                           ),
                         ),
