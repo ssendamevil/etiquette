@@ -13,7 +13,7 @@ class PositionTypePage extends StatelessWidget {
           const SizedBox(height: 131),
           const Center(
             child: Text(
-              'Добро пожаловать!',
+              'Welcome!',
               style: TextStyle(
                 color: Color(0xFF2F2F2F),
                 fontFamily: 'Geometria',
@@ -28,7 +28,7 @@ class PositionTypePage extends StatelessWidget {
               horizontal: 70,
             ),
             child: Text(
-              'Etiquette - когда ведёшь себя лучше, чем необходимо',
+              'Etiquette - when you behave better than necessary',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF6A81FF),
@@ -68,7 +68,7 @@ class PositionTypePage extends StatelessWidget {
                     elevation: 0,
                   ),
                   child: const Text(
-                    'Этикет для работника',
+                    'Etiquette for employees',
                     style: TextStyle(
                       fontFamily: 'Geometria',
                       fontSize: 22.42,
@@ -107,7 +107,7 @@ class PositionTypePage extends StatelessWidget {
                     elevation: 0,
                   ),
                   child: const Text(
-                    'Этикет для работодателя',
+                    'Etiquette for employers',
                     style: TextStyle(
                       fontFamily: 'Geometria',
                       fontSize: 21.91,
@@ -122,7 +122,7 @@ class PositionTypePage extends StatelessWidget {
           const SizedBox(height: 19),
           const Center(
             child: Text(
-              'Выберите, кем вы являетесь:',
+              'Select who you are:',
               style: TextStyle(
                 fontFamily: 'Geometria',
                 fontSize: 16,

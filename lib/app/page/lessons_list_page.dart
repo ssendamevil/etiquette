@@ -82,7 +82,7 @@ class LessonsListViewState extends State<LessonsListView> {
                   child: Image.asset('assets/arrow_back.png'),
                 ),
                 Text(
-                  'Раздел ${widget.sectionNumber}-${widget.moduleNumber}',
+                  'Section ${widget.sectionNumber}-${widget.moduleNumber}',
                   style: const TextStyle(
                     fontFamily: 'Geometria',
                     fontSize: 20,

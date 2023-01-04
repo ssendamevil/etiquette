@@ -78,7 +78,7 @@ class LessonViewState extends State<LessonView> {
                   child: Image.asset('assets/arrow_back.png'),
                 ),
                 Text(
-                  'Урок ${widget.lessonNumber}',
+                  'Lesson ${widget.lessonNumber}',
                   style: const TextStyle(
                     fontFamily: 'Geometria',
                     fontSize: 20,
@@ -163,7 +163,7 @@ class LessonViewState extends State<LessonView> {
                         ),
                         const SizedBox(height: 20),
                         const Text(
-                          'Возможно, какие-либо материалы для скачивания:',
+                          'Probably, some materials to download:',
                           style: TextStyle(
                             color: Color(0xFF2F2F2F),
                             fontFamily: 'Geometria',

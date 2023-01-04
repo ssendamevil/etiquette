@@ -88,7 +88,7 @@ class ModuleCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${module.lessonsPassed} из ${module.lessonsNumber}',
+                        '${module.lessonsPassed} of ${module.lessonsNumber}',
                         style: TextStyle(
                           fontFamily: 'Geometria',
                           fontSize: 12,
@@ -101,7 +101,7 @@ class ModuleCard extends StatelessWidget {
                       (module.isUnlocked)
                           ? (module.isTestPassed)
                               ? const Text(
-                                  'Тест пройден',
+                                  'Quiz completed',
                                   style: TextStyle(
                                     fontFamily: 'Geometria',
                                     fontSize: 12,
@@ -110,7 +110,7 @@ class ModuleCard extends StatelessWidget {
                                   ),
                                 )
                               : const Text(
-                                  'Тест не пройден',
+                                  'Quiz not completed',
                                   style: TextStyle(
                                     fontFamily: 'Geometria',
                                     fontSize: 12,

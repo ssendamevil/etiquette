@@ -84,7 +84,7 @@ class QuizViewState extends State<QuizView> {
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 26),
                               child: Text(
-                                'На прохождение теста даётся 15 минут!',
+                                'You have 15 minutes for attempt',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Color(0xFF2F2F2F),
@@ -96,7 +96,7 @@ class QuizViewState extends State<QuizView> {
                             ),
                             const SizedBox(height: 28.34),
                             const Text(
-                              'Также при попытке свернуть приложение тест автоматически завершится',
+                              'Also, when you try to minimize the app, the quiz will automatically end',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color(0xFFA0A3BD),
@@ -126,7 +126,7 @@ class QuizViewState extends State<QuizView> {
                                             vertical: 14.5,
                                           ),
                                           child: Text(
-                                            'Пройти тест',
+                                            'Attempt quiz',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'RF Dewi',
@@ -170,7 +170,7 @@ class QuizViewState extends State<QuizView> {
                                               vertical: 14.5,
                                             ),
                                             child: Text(
-                                              'Вернуться назад',
+                                              'Return',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontFamily: 'RF Dewi',
@@ -239,8 +239,8 @@ class QuizViewState extends State<QuizView> {
                                     const EdgeInsets.symmetric(horizontal: 26),
                                 child: Text(
                                   (state.result! >= 80)
-                                      ? 'Тест успешно пройден!'
-                                      : 'Тест не пройден',
+                                      ? 'Quiz completed successfully'
+                                      : 'Quiz failed',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     color: Color(0xFF2F2F2F),
@@ -255,8 +255,8 @@ class QuizViewState extends State<QuizView> {
                                     const EdgeInsets.symmetric(horizontal: 26),
                                 child: Text(
                                   (state.result! >= 80)
-                                      ? 'Поздравляем! Вы успешно завершили тест и теперь можете просматривать следующие этапы'
-                                      : 'Вы допустили одну или несколько ошибок. Перепройдите тест или повторите изученный материал',
+                                      ? 'Congratulations! You have successfully completed the quiz and can now view more materials'
+                                      : 'You made one or more mistakes. Retake the quiz or review learned materials',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     color: Color(0xFFA0A3BD),
@@ -293,7 +293,7 @@ class QuizViewState extends State<QuizView> {
                                                 vertical: 14.5,
                                               ),
                                               child: Text(
-                                                'Вернуться на главную',
+                                                'Go home',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: 'RF Dewi',
@@ -371,7 +371,7 @@ class QuizViewState extends State<QuizView> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Вопрос №${currentQuestion + 1}',
+                                'Question №${currentQuestion + 1}',
                                 style: const TextStyle(
                                   color: Color(0xFF2F2F2F),
                                   fontFamily: 'Geometria',
@@ -479,7 +479,7 @@ class QuizViewState extends State<QuizView> {
                                             vertical: 14.5,
                                           ),
                                           child: Text(
-                                            'Далее',
+                                            'Next',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'RF Dewi',
@@ -526,7 +526,7 @@ class QuizViewState extends State<QuizView> {
                                               vertical: 14.5,
                                             ),
                                             child: Text(
-                                              'Назад',
+                                              'Back',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontFamily: 'RF Dewi',

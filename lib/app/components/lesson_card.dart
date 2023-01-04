@@ -44,7 +44,7 @@ class LessonCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '• ${lesson.time} минут',
+                        '• ${lesson.time} minutes',
                         style: const TextStyle(
                           color: Color(0xFF6A81FF),
                           fontFamily: 'Geometria',
@@ -54,7 +54,7 @@ class LessonCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 12),
                       Text(
-                        '• ${lesson.attachmentsNumber} файла',
+                        '• ${lesson.attachmentsNumber} files',
                         style: const TextStyle(
                           color: Color(0xFF6A81FF),
                           fontFamily: 'Geometria',

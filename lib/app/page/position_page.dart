@@ -45,7 +45,7 @@ class PositionViewState extends State<PositionView> {
           const SizedBox(height: 131),
           const Center(
             child: Text(
-              'Добро пожаловать в etiq!',
+              'Welcome to etiq!',
               style: TextStyle(
                 color: Color(0xFF2F2F2F),
                 fontFamily: 'Geometria',
@@ -60,7 +60,7 @@ class PositionViewState extends State<PositionView> {
               horizontal: 60,
             ),
             child: Text(
-              'Когда ведёшь себя лучше, чем необходимо',
+              'When you behave better than necessary',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF6A81FF),
@@ -92,7 +92,7 @@ class PositionViewState extends State<PositionView> {
                           if (index == state.positions!.length) {
                             return const Center(
                               child: Text(
-                                'Выберите, кем вы являетесь:',
+                                'Select who you are:',
                                 style: TextStyle(
                                   fontFamily: 'Geometria',
                                   fontSize: 16,

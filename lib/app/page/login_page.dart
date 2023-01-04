@@ -62,7 +62,7 @@ class LoginViewState extends State<LoginView> {
               const SizedBox(height: 22.75),
               const Center(
                 child: Text(
-                  'Вход в etiquette',
+                  'Log in to etiquette',
                   style: TextStyle(
                     color: Color(0xFF2F2F2F),
                     fontSize: 24,
@@ -81,7 +81,7 @@ class LoginViewState extends State<LoginView> {
                   controller: _textController,
                   enabled: !isPending,
                   decoration: InputDecoration(
-                      hintText: 'Телефон',
+                      hintText: 'Phone number',
                       hintStyle: const TextStyle(
                         fontFamily: 'Geometria',
                         fontSize: 16,
@@ -137,7 +137,7 @@ class LoginViewState extends State<LoginView> {
                             horizontal: 14.5,
                           ),
                           child: Text(
-                            'Регистрация',
+                            'Sign up',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'RF Dewi',
@@ -187,7 +187,7 @@ class LoginViewState extends State<LoginView> {
                             vertical: 14.5,
                           ),
                           child: Text(
-                            'Войти',
+                            'Sign in',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'RF Dewi',
@@ -220,7 +220,7 @@ class LoginViewState extends State<LoginView> {
                 enabled: !isPending,
                 onChanged: (text) => setState(() {}),
                 decoration: InputDecoration(
-                    hintText: 'Код подтверждения',
+                    hintText: 'Confirmation code',
                     hintStyle: const TextStyle(
                       fontFamily: 'Geometria',
                       fontSize: 16,
@@ -261,7 +261,7 @@ class LoginViewState extends State<LoginView> {
                           vertical: 14.5,
                         ),
                         child: Text(
-                          'Войти',
+                          'Sign in',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'RF Dewi',
@@ -291,7 +291,7 @@ class LoginViewState extends State<LoginView> {
                 enabled: !isPending,
                 onChanged: (text) => setState(() {}),
                 decoration: InputDecoration(
-                    hintText: 'Код подтверждения',
+                    hintText: 'Confirmation code',
                     hintStyle: const TextStyle(
                       fontFamily: 'Geometria',
                       fontSize: 16,
@@ -333,7 +333,7 @@ class LoginViewState extends State<LoginView> {
                           horizontal: 14.5,
                         ),
                         child: Text(
-                          'Регистрация',
+                          'Sign up',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'RF Dewi',

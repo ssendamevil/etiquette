@@ -35,7 +35,7 @@ class PositionButton extends StatelessWidget {
           elevation: 0,
         ),
         child: Text(
-          'Я ${position.name}',
+          'I am ${position.name}',
           style: const TextStyle(
             fontFamily: 'Geometria',
             fontSize: 21.91,

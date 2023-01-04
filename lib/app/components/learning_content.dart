@@ -30,7 +30,7 @@ class LearningContent extends StatelessWidget{
               (level.isUnlocked)
                   ? Center(
                 child: Text(
-                  'Уровень ${index + 1}',
+                  'Level ${index + 1}',
                   style: const TextStyle(
                     fontFamily: 'Geometria',
                     fontSize: 20,
@@ -72,7 +72,7 @@ class LearningContent extends StatelessWidget{
                     SvgPicture.asset('assets/lock.svg'),
                     const SizedBox(width: 13),
                     Text(
-                      'Уровень ${index + 1}',
+                      'Level ${index + 1}',
                       style: const TextStyle(
                         fontFamily: 'Geometria',
                         fontSize: 20,
@@ -123,7 +123,7 @@ class LearningContent extends StatelessWidget{
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Раздел ${sectionIndex + 1}: ${section.title}',
+                          'Section ${sectionIndex + 1}: ${section.title}',
                           style: TextStyle(
                             fontFamily: 'Geometria',
                             fontSize: 20,
