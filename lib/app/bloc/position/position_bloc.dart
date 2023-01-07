@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:etiquette/app/bloc/auth/auth_bloc.dart';
+import 'package:etiquette/app/bloc/exception/exception_extensions.dart';
 import 'package:etiquette/domain/model/position.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 
@@ -27,10 +26,10 @@ class PositionBloc extends Bloc<PositionEvent, PositionState> {
         state: PositionStateType.success,
         positions: positions,
       ));
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       emit(state.copyOf(
         state: PositionStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        failureMessage: e.parseMessage(),
       ));
     }
   }

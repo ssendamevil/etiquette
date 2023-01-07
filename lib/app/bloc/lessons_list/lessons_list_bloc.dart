@@ -1,13 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:etiquette/app/bloc/exception/exception_extensions.dart';
 import 'package:etiquette/domain/model/lesson.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 
 part 'lessons_list_event.dart';
-
 part 'lessons_list_state.dart';
 
 class LessonsListBloc extends Bloc<LessonsListEvent, LessonsListState> {
@@ -26,10 +25,10 @@ class LessonsListBloc extends Bloc<LessonsListEvent, LessonsListState> {
         state: LessonsListStateType.success,
         lessons: lessons,
       ));
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       emit(state.copyOf(
         state: LessonsListStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        failureMessage: e.parseMessage(),
       ));
     }
   }

@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:etiquette/app/bloc/exception/exception_extensions.dart';
 import 'package:etiquette/domain/model/quiz.dart';
 import 'package:etiquette/domain/repository/quiz_repository.dart';
 
@@ -27,10 +26,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         state: QuizStateType.success,
         quiz: quiz,
       ));
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       emit(state.copyOf(
         state: QuizStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        failureMessage: e.parseMessage(),
       ));
     }
   }
@@ -46,10 +45,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         state: QuizStateType.success,
         result: result,
       ));
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       emit(state.copyOf(
         state: QuizStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        failureMessage: e.parseMessage(),
       ));
     }
   }
