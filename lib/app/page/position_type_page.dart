@@ -57,7 +57,7 @@ class PositionTypePage extends StatelessWidget {
                   onPressed: () {
                     BoxHelper.savePositionType(1);
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PositionPage(),
+                      builder: (context) => const PositionPage(1),
                     ));
                   },
                   style: ElevatedButton.styleFrom(
@@ -98,6 +98,9 @@ class PositionTypePage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     BoxHelper.savePositionType(2);
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const PositionPage(2),
+                    ));
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,

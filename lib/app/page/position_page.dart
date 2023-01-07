@@ -1,12 +1,13 @@
 import 'package:etiquette/app/bloc/position/position_bloc.dart';
 import 'package:etiquette/app/components/position_button.dart';
-import 'package:etiquette/domain/model/position.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PositionPage extends StatelessWidget {
-  const PositionPage({Key? key}) : super(key: key);
+  final int positionType;
+
+  const PositionPage(this.positionType, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,15 @@ class PositionPage extends StatelessWidget {
       create: (context) => PositionBloc(
         context.read<LearningRepository>(),
       ),
-      child: const PositionView(),
+      child: PositionView(positionType),
     );
   }
 }
 
 class PositionView extends StatefulWidget {
-  const PositionView({Key? key}) : super(key: key);
+  final int positionType;
+
+  const PositionView(this.positionType, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -34,7 +37,8 @@ class PositionViewState extends State<PositionView> {
   @override
   void initState() {
     super.initState();
-    _bloc = context.read<PositionBloc>()..add(const PositionStartedEvent(1));
+    _bloc = context.read<PositionBloc>()
+      ..add(PositionStartedEvent(widget.positionType));
   }
 
   @override
