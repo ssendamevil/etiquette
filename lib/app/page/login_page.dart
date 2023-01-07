@@ -355,9 +355,10 @@ class LoginViewState extends State<LoginView> {
   }
 
   void _stateListener(BuildContext context, AuthState state) {
-    if (state.state == AuthStateType.failure) {
+    if (state.failureMessage != null) {
       Fluttertoast.showToast(msg: state.failureMessage!);
-    } else if (state.state == AuthStateType.codeAccepted) {
+    }
+    if (state.state == AuthStateType.codeAccepted) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => const PositionTypePage(),
       ));

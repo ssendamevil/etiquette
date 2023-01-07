@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:etiquette/app/bloc/exception/exception_extensions.dart';
 import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/data/db/entity/token_entity.dart';
 import 'package:etiquette/domain/repository/auth_repository.dart';
@@ -29,10 +29,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _authRepository.verifyPhone(event.phone);
       phone = event.phone;
       emit(state.copyOf(state: AuthStateType.success));
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       emit(state.copyOf(
-        state: AuthStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        state: AuthStateType.initial,
+        failureMessage: e.parseMessage(),
       ));
     }
   }
@@ -43,31 +43,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _authRepository.verifyPhone(event.phone);
       phone = event.phone;
       emit(state.copyOf(state: AuthStateType.success));
-    } on DioError catch (e) {
+    } on Exception catch (e) {
       emit(state.copyOf(
-        state: AuthStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        state: AuthStateType.initial,
+        failureMessage: e.parseMessage(),
       ));
     }
   }
 
-  Future<void> _onCodeSent(AuthCodeEnteredEvent event, Emitter emit) async{
-    try{
+  Future<void> _onCodeSent(AuthCodeEnteredEvent event, Emitter emit) async {
+    try {
       late TokenEntity tokens;
       emit(state.copyOf(state: AuthStateType.isProgress));
-      if (event.isLogin){
+      if (event.isLogin) {
         tokens = await _authRepository.register(phone, event.code);
-      }
-      else{
+      } else {
         tokens = await _authRepository.register(phone, event.code);
       }
       BoxHelper.saveToken(tokens);
       emit(state.copyOf(state: AuthStateType.codeAccepted));
-    }
-    on DioError catch(e){
+    } on Exception catch (e) {
       emit(state.copyOf(
-        state: AuthStateType.failure,
-        failureMessage: e.response!.data['msg'],
+        state: AuthStateType.success,
+        failureMessage: e.parseMessage(),
       ));
     }
   }

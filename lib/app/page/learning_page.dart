@@ -91,7 +91,7 @@ class LearningViewState extends State<LearningView> {
                     return LearningContent(_bloc, state);
                   case LearningStateType.failure:
                     return Center(
-                      child: Text(state.failureMessage!),
+                      child: Text(state.failureMessage ?? 'Something went wrong'),
                     );
                   case LearningStateType.success:
                     return LearningContent(_bloc, state);
