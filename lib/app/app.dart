@@ -69,6 +69,6 @@ class AppViewState extends State<AppView> {
         BoxHelper.getPositionId() == null) {
       return const PositionTypePage();
     }
-    return const LearningPage();
+    return const PositionTypePage();//return const LearningPage(); TODO: Need to replace
   }
 }
