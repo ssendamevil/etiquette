@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:etiquette/data/db/entity/token_entity.dart';
-import 'package:etiquette/data/network/registration_response.dart';
+import 'package:fresh_dio/fresh_dio.dart';
+import 'package:get_it/get_it.dart';
 
 class AuthNetworkProvider {
   final Dio _dio;
@@ -19,7 +20,10 @@ class AuthNetworkProvider {
       'phone': phone,
       'code': code,
     });
-
+    GetIt.I<Fresh>().setToken(OAuth2Token(
+      accessToken: response.data['token']['access'],
+      refreshToken: response.data['token']['refresh'],
+    ));
     return TokenEntity(
       response.data['token']['access'],
       response.data['token']['refresh'],
