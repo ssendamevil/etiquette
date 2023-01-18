@@ -24,46 +24,52 @@ class EmployerModuleCard extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButton(
-              onPressed: (module.isUnlocked) ? () => onClicked.call() : () {},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+            onPressed: (module.isUnlocked) ? () => onClicked.call() : () {},
+            style: ElevatedButton.styleFrom(
+              primary: Colors.white,
+              padding: const EdgeInsets.all(0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 91,
-                    height: 97,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        ),
-                        gradient: (sectionNumber % 2 == 0)
-                            ? const LinearGradient(
-                                colors: [
-                                  Color(0xFF6A81FF),
-                                  Color(0xFF899CFF),
-                                ],
-                              )
-                            : null,
-                        color: (sectionNumber % 2 == 1)
-                            ? const Color(0xFFE7B638)
-                            : null,
+            ),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 91,
+                  height: 97,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
                       ),
-                      child: SvgPicture.asset((sectionNumber % 2 == 0)
+                      gradient: (sectionNumber % 2 == 0)
+                          ? const LinearGradient(
+                              colors: [
+                                Color(0xFF6A81FF),
+                                Color(0xFF899CFF),
+                              ],
+                            )
+                          : null,
+                      color: (sectionNumber % 2 == 1)
+                          ? const Color(0xFFE7B638)
+                          : null,
+                    ),
+                    child: SvgPicture.asset(
+                      (sectionNumber % 2 == 0)
                           ? (moduleNumber % 2 == 0)
                               ? 'assets/module_line_1.svg'
                               : 'assets/module_line_2.svg'
                           : (moduleNumber % 2 == 0)
                               ? 'assets/module_line_3.svg'
-                              : 'assets/module_line_4.svg'),
+                              : 'assets/module_line_4.svg',
+                      fit: BoxFit.none,
+                      alignment: Alignment.centerLeft,
                     ),
                   ),
-                  Padding(
+                ),
+                Expanded(
+                  child: Padding(
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       children: [
@@ -104,8 +110,10 @@ class EmployerModuleCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                ],
-              )),
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );
