@@ -1,12 +1,14 @@
 import 'package:etiquette/app/page/position_page.dart';
 import 'package:etiquette/data/db/box_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class PositionTypePage extends StatelessWidget {
   const PositionTypePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       body: Column(
         children: [

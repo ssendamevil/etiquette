@@ -62,6 +62,7 @@ class LessonViewState extends State<LessonView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);

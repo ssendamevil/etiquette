@@ -3,6 +3,7 @@ import 'package:etiquette/app/page/learning_page.dart';
 import 'package:etiquette/app/page/position_type_page.dart';
 import 'package:etiquette/domain/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -45,6 +46,7 @@ class LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(

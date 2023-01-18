@@ -5,6 +5,7 @@ import 'package:etiquette/app/page/lessons_list_page.dart';
 import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -43,6 +44,7 @@ class LearningViewState extends State<LearningView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       body: Column(
         children: [

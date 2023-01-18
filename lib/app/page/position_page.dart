@@ -2,6 +2,7 @@ import 'package:etiquette/app/bloc/position/position_bloc.dart';
 import 'package:etiquette/app/components/position_button.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PositionPage extends StatelessWidget {
@@ -43,6 +44,7 @@ class PositionViewState extends State<PositionView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       body: Column(
         children: [

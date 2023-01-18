@@ -2,6 +2,7 @@ import 'package:etiquette/app/bloc/lessons_list/lessons_list_bloc.dart';
 import 'package:etiquette/app/components/lessons_list_content.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonsListPage extends StatelessWidget {
@@ -64,6 +65,7 @@ class LessonsListViewState extends State<LessonsListView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return Scaffold(
       body: Column(
         children: [
