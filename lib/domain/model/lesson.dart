@@ -7,7 +7,7 @@ class Lesson extends Equatable {
   final String? shortDescription;
   final String? content;
   final int? time;
-  final String videoPreview;
+  final String? videoPreview;
   final String? videoFile;
   final List<Attachment>? attachments;
   final int? attachmentsNumber;
@@ -21,7 +21,7 @@ class Lesson extends Equatable {
     this.shortDescription,
     this.content,
     this.time,
-    required this.videoPreview,
+    this.videoPreview,
     this.videoFile,
     this.attachments,
     this.attachmentsNumber,
