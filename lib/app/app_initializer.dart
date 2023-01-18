@@ -30,7 +30,7 @@ class AppInitializer {
     BaseOptions options = BaseOptions(
       baseUrl: _host,
       connectTimeout: 5000,
-      receiveTimeout: 5000,
+      receiveTimeout: 10000,
     );
 
     final dio = Dio(options);

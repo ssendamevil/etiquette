@@ -29,11 +29,19 @@ class BoxHelper{
     return Hive.box(Hives.boxLearning).get(Hives.keyPositionId);
   }
 
+  static bool? getCharityShow(){
+    return Hive.box(Hives.boxSettings).get(Hives.keyCharityShow);
+  }
+
   static void savePositionType(int typeId){
     Hive.box(Hives.boxLearning).put(Hives.keyPositionType, typeId);
   }
 
   static void savePositionId(int positionId){
     Hive.box(Hives.boxLearning).put(Hives.keyPositionId, positionId);
+  }
+
+  static void saveCharityShow(bool charityShow){
+    Hive.box(Hives.boxSettings).put(Hives.keyCharityShow, charityShow);
   }
 }

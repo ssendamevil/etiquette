@@ -14,4 +14,5 @@ class Hives {
   static const String keyUserId = 'userId';
   static const String keyPositionType = 'positionType';
   static const String keyPositionId = 'positionId';
+  static const String keyCharityShow = 'charityShow';
 }

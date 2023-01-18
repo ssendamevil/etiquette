@@ -1,5 +1,7 @@
 import 'package:etiquette/app/bloc/quiz/quiz_bloc.dart';
+import 'package:etiquette/app/components/charity_dialog.dart';
 import 'package:etiquette/app/page/learning_page.dart';
+import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/domain/repository/quiz_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,6 +40,8 @@ class QuizViewState extends State<QuizView> {
   late int timerMilliseconds;
   List<List<bool>>? checkboxVars;
   List<int>? answers;
+  late CharityDialog _charityDialog;
+  bool? charityShow;
 
   @override
   void initState() {
@@ -47,6 +51,8 @@ class QuizViewState extends State<QuizView> {
     timerMinutes = 15;
     timerSeconds = 0;
     timerMilliseconds = 0;
+    _charityDialog = CharityDialog(context);
+    charityShow = BoxHelper.getCharityShow();
   }
 
   @override
@@ -275,12 +281,17 @@ class QuizViewState extends State<QuizView> {
                                       children: [
                                         Expanded(
                                           child: ElevatedButton(
-                                            onPressed: () =>
-                                                Navigator.of(context)
-                                                    .push(MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const LearningPage(),
-                                            )),
+                                            onPressed: () {
+                                              if (charityShow == null ||
+                                                  charityShow == false) {
+                                                _charityDialog.show();
+                                              }
+                                              // Navigator.of(context)
+                                              //     .push(MaterialPageRoute(
+                                              //   builder: (context) =>
+                                              //       const LearningPage(),
+                                              // ));
+                                            },
                                             style: ElevatedButton.styleFrom(
                                               primary: const Color(0xFFE7B638),
                                               shape: RoundedRectangleBorder(

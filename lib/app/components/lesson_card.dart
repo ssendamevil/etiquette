@@ -64,7 +64,7 @@ class LessonCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  (!lesson.isComplete!)
+                  (!lesson.isFavourite!)
                       ? SvgPicture.asset('assets/star.svg')
                       : SvgPicture.asset('assets/star_marked.svg'),
                 ],

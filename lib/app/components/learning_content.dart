@@ -1,16 +1,19 @@
 import 'package:etiquette/app/bloc/learning/learning_bloc.dart';
+import 'package:etiquette/app/components/employer_module_card.dart';
 import 'package:etiquette/app/components/module_card.dart';
 import 'package:etiquette/app/page/lessons_list_page.dart';
 import 'package:etiquette/data/db/box_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class LearningContent extends StatelessWidget{
-
+class LearningContent extends StatelessWidget {
   final LearningState state;
   final LearningBloc _bloc;
+  late int positionTypeId;
 
-  const LearningContent(this._bloc, this.state, {Key? key}) : super(key: key);
+  LearningContent(this._bloc, this.state, {Key? key}) : super(key: key) {
+    positionTypeId = BoxHelper.getPositionType()!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,60 +32,59 @@ class LearningContent extends StatelessWidget{
             children: [
               (level.isUnlocked)
                   ? Center(
-                child: Text(
-                  'Level ${index + 1}',
-                  style: const TextStyle(
-                    fontFamily: 'Geometria',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF6A81FF),
-                  ),
-                ),
-              )
-              // ? Row(
-              //     children: [
-              //       const Divider(
-              //         indent: 0,
-              //         endIndent: 24,
-              //         thickness: 1,
-              //         color: Color(0xFF6A81FF),
-              //       ),
-              //       Text(
-              //         'Уровень ${index + 1}',
-              //         style: const TextStyle(
-              //           fontFamily: 'Geometria',
-              //           fontSize: 20,
-              //           fontWeight: FontWeight.w500,
-              //           color: Color(0xFF6A81FF),
-              //         ),
-              //       ),
-              //       const Divider(
-              //         indent: 23,
-              //         endIndent: 0,
-              //         thickness: 1,
-              //         color: Color(0xFF6A81FF),
-              //       ),
-              //     ],
-              //   )
+                      child: Text(
+                        'Level ${index + 1}',
+                        style: const TextStyle(
+                          fontFamily: 'Geometria',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF6A81FF),
+                        ),
+                      ),
+                    )
+                  // ? Row(
+                  //     children: [
+                  //       const Divider(
+                  //         indent: 0,
+                  //         endIndent: 24,
+                  //         thickness: 1,
+                  //         color: Color(0xFF6A81FF),
+                  //       ),
+                  //       Text(
+                  //         'Уровень ${index + 1}',
+                  //         style: const TextStyle(
+                  //           fontFamily: 'Geometria',
+                  //           fontSize: 20,
+                  //           fontWeight: FontWeight.w500,
+                  //           color: Color(0xFF6A81FF),
+                  //         ),
+                  //       ),
+                  //       const Divider(
+                  //         indent: 23,
+                  //         endIndent: 0,
+                  //         thickness: 1,
+                  //         color: Color(0xFF6A81FF),
+                  //       ),
+                  //     ],
+                  //   )
                   : Center(
-                child: Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset('assets/lock.svg'),
-                    const SizedBox(width: 13),
-                    Text(
-                      'Level ${index + 1}',
-                      style: const TextStyle(
-                        fontFamily: 'Geometria',
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFFA0A3BD),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/lock.svg'),
+                          const SizedBox(width: 13),
+                          Text(
+                            'Level ${index + 1}',
+                            style: const TextStyle(
+                              fontFamily: 'Geometria',
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFFA0A3BD),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
               // : Row(
               //     children: [
               //       const Divider(
@@ -137,47 +139,64 @@ class LearningContent extends StatelessWidget{
                       const SizedBox(height: 20),
                       ListView.separated(
                         padding: const EdgeInsets.all(0),
-                        physics:
-                        const NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
                           var module = section.modules[index];
-                          return ModuleCard(module, () async {
-                            await Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    LessonsListPage(
-                                        module.id,
-                                        module.quizId,
-                                        sectionIndex + 1,
-                                        index + 1,
-                                        module.isTestPassed),
-                              ),
-                            );
-                            _bloc.add(LearningStartedEvent(
-                                BoxHelper.getPositionId()!));
-                          });
+                          if (positionTypeId == 1) {
+                            return ModuleCard(module, () async {
+                              await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => LessonsListPage(
+                                      module.id,
+                                      module.quizId,
+                                      sectionIndex + 1,
+                                      index + 1,
+                                      module.isTestPassed),
+                                ),
+                              );
+                              _bloc.add(LearningStartedEvent(
+                                  BoxHelper.getPositionId()!));
+                            });
+                          }
+                          return EmployerModuleCard(
+                            module,
+                            sectionIndex,
+                            index,
+                            () async {
+                              await Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => LessonsListPage(
+                                      module.id,
+                                      module.quizId,
+                                      sectionIndex + 1,
+                                      index + 1,
+                                      module.isTestPassed),
+                                ),
+                              );
+                              _bloc.add(LearningStartedEvent(
+                                  BoxHelper.getPositionId()!));
+                            },
+                          );
                         },
                         separatorBuilder: (context, index) =>
-                        const SizedBox(height: 15),
+                            const SizedBox(height: 15),
                         itemCount: section.modules.length,
                       ),
                     ],
                   );
                 },
                 separatorBuilder: (context, index) =>
-                const SizedBox(height: 40),
+                    const SizedBox(height: 40),
                 itemCount: level.sections.length,
               )
             ],
           ),
         );
       },
-      separatorBuilder: (context, index) =>
-      const SizedBox(height: 40),
+      separatorBuilder: (context, index) => const SizedBox(height: 40),
       itemCount: state.levels!.length,
     );
   }
-
 }
