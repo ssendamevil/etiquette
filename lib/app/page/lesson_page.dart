@@ -85,7 +85,7 @@ class LessonViewState extends State<LessonView> {
                   child: Image.asset('assets/arrow_back.png'),
                 ),
                 Text(
-                  'Lesson ${widget.lessonNumber}',
+                  'Урок ${widget.lessonNumber}',
                   style: const TextStyle(
                     fontFamily: 'Geometria',
                     fontSize: 20,
@@ -150,7 +150,15 @@ class LessonViewState extends State<LessonView> {
                         const SizedBox(height: 16.84),
                         SizedBox(
                           width: 341,
-                          height: 250,
+                          height: (lesson.videoFile != null &&
+                                  lesson.attachments!.isNotEmpty)
+                              ? 250
+                              : (lesson.videoFile == null &&
+                                      lesson.attachments!.isEmpty)
+                                  ? 600
+                                  : (lesson.videoFile != null)
+                                      ? 410
+                                      : 450,
                           child: ListView(
                             padding: const EdgeInsets.all(0),
                             children: [
@@ -189,7 +197,7 @@ class LessonViewState extends State<LessonView> {
                             ? const Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Probably, some materials to download:',
+                                  'Возможно, какие-либо дополнительные материалы для скачивания:',
                                   style: TextStyle(
                                     color: Color(0xFF2F2F2F),
                                     fontFamily: 'Geometria',

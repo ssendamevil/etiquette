@@ -25,7 +25,7 @@ class CharityDialog {
                   top: 231,
                   left: 31,
                   right: 31,
-                  bottom: 213,
+                  bottom: 176,
                 ),
                 child: Container(
                   decoration: BoxDecoration(
@@ -60,7 +60,7 @@ class CharityDialog {
                           SvgPicture.asset('assets/charity.svg'),
                           const SizedBox(height: 17.17),
                           const Text(
-                            'Who needs your help?',
+                            'Кому нужна ваша помощь?',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Color(0xFF2F2F2F),
@@ -71,7 +71,7 @@ class CharityDialog {
                           ),
                           const SizedBox(height: 20),
                           const Text(
-                            'Some text that will encourage people to go to charity tab by pressing a button',
+                            'Какой-либо текст, который будет призывать пользователя перейти на вкладку благотворительность нажав на кнопку',
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: Color(0xFFA0A3BD),
@@ -95,7 +95,7 @@ class CharityDialog {
                               ),
                               const SizedBox(width: 20),
                               const Text(
-                                'Don\'t show again',
+                                'Больше не показывать',
                                 style: TextStyle(
                                   color: Color(0xFF2F2F2F),
                                   fontFamily: 'Geometria',
@@ -129,7 +129,7 @@ class CharityDialog {
                                       horizontal: 20,
                                     ),
                                     child: Text(
-                                      'Charity',
+                                      'Благотворительность',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,

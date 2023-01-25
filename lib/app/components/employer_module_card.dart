@@ -95,7 +95,7 @@ class EmployerModuleCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              '${module.lessonsPassed} of ${module.lessonsNumber}',
+                              '${module.lessonsPassed} из ${module.lessonsNumber}',
                               style: TextStyle(
                                 fontFamily: 'Geometria',
                                 fontSize: 12,

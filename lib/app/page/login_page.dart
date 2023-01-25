@@ -64,7 +64,7 @@ class LoginViewState extends State<LoginView> {
               const SizedBox(height: 22.75),
               const Center(
                 child: Text(
-                  'Log in to etiquette',
+                  'Вход в etiquette',
                   style: TextStyle(
                     color: Color(0xFF2F2F2F),
                     fontSize: 24,
@@ -83,7 +83,7 @@ class LoginViewState extends State<LoginView> {
                   controller: _textController,
                   enabled: !isPending,
                   decoration: InputDecoration(
-                      hintText: 'Phone number',
+                      hintText: 'Телефон',
                       hintStyle: const TextStyle(
                         fontFamily: 'Geometria',
                         fontSize: 16,
@@ -110,51 +110,51 @@ class LoginViewState extends State<LoginView> {
           ),
         ],
       ),
-      bottomNavigationBar: (showBottom)
-          ? BottomAppBar(
-              color: Colors.transparent,
-              elevation: 0,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 17,
-                        vertical: 44,
-                      ),
-                      child: ElevatedButton(
-                        onPressed: (!isPending)
-                            ? () {
-                                _bloc.add(
-                                    AuthRegisterEvent(_textController.text));
-                                setState(() => showBottom = false);
-                              }
-                            : null,
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color(0xFFE7B638),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 14.5,
-                            horizontal: 14.5,
-                          ),
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'RF Dewi',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : null,
+      // bottomNavigationBar: (showBottom)
+      //     ? BottomAppBar(
+      //         color: Colors.transparent,
+      //         elevation: 0,
+      //         child: Row(
+      //           children: [
+      //             Expanded(
+      //               child: Padding(
+      //                 padding: const EdgeInsets.symmetric(
+      //                   horizontal: 17,
+      //                   vertical: 44,
+      //                 ),
+      //                 child: ElevatedButton(
+      //                   onPressed: (!isPending)
+      //                       ? () {
+      //                           _bloc.add(
+      //                               AuthRegisterEvent(_textController.text));
+      //                           setState(() => showBottom = false);
+      //                         }
+      //                       : null,
+      //                   style: ElevatedButton.styleFrom(
+      //                     primary: const Color(0xFFE7B638),
+      //                   ),
+      //                   child: const Padding(
+      //                     padding: EdgeInsets.symmetric(
+      //                       vertical: 14.5,
+      //                       horizontal: 14.5,
+      //                     ),
+      //                     child: Text(
+      //                       'Регистрация',
+      //                       style: TextStyle(
+      //                         color: Colors.white,
+      //                         fontFamily: 'RF Dewi',
+      //                         fontWeight: FontWeight.w600,
+      //                         fontSize: 16,
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       )
+      //     : null,
     );
   }
 
@@ -189,7 +189,7 @@ class LoginViewState extends State<LoginView> {
                             vertical: 14.5,
                           ),
                           child: Text(
-                            'Sign in',
+                            'Войти',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'RF Dewi',
@@ -222,7 +222,7 @@ class LoginViewState extends State<LoginView> {
                 enabled: !isPending,
                 onChanged: (text) => setState(() {}),
                 decoration: InputDecoration(
-                    hintText: 'Confirmation code',
+                    hintText: 'Код подтверждения',
                     hintStyle: const TextStyle(
                       fontFamily: 'Geometria',
                       fontSize: 16,
@@ -263,7 +263,7 @@ class LoginViewState extends State<LoginView> {
                           vertical: 14.5,
                         ),
                         child: Text(
-                          'Sign in',
+                          'Войти',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'RF Dewi',
@@ -293,7 +293,7 @@ class LoginViewState extends State<LoginView> {
                 enabled: !isPending,
                 onChanged: (text) => setState(() {}),
                 decoration: InputDecoration(
-                    hintText: 'Confirmation code',
+                    hintText: 'Код подтверждения',
                     hintStyle: const TextStyle(
                       fontFamily: 'Geometria',
                       fontSize: 16,
@@ -311,44 +311,44 @@ class LoginViewState extends State<LoginView> {
                     )),
               ),
             ),
-            const SizedBox(height: 15),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 17,
-                    ),
-                    child: ElevatedButton(
-                      onPressed: (_codeController.text.isNotEmpty && !isPending)
-                          ? () => _bloc.add(AuthCodeEnteredEvent(
-                                int.parse(_codeController.text),
-                                false,
-                              ))
-                          : null,
-                      style: ElevatedButton.styleFrom(
-                        primary: const Color(0xFFE7B638),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 14.5,
-                          horizontal: 14.5,
-                        ),
-                        child: Text(
-                          'Sign up',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'RF Dewi',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // const SizedBox(height: 15),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: Padding(
+            //         padding: const EdgeInsets.symmetric(
+            //           horizontal: 17,
+            //         ),
+            //         child: ElevatedButton(
+            //           onPressed: (_codeController.text.isNotEmpty && !isPending)
+            //               ? () => _bloc.add(AuthCodeEnteredEvent(
+            //                     int.parse(_codeController.text),
+            //                     false,
+            //                   ))
+            //               : null,
+            //           style: ElevatedButton.styleFrom(
+            //             primary: const Color(0xFFE7B638),
+            //           ),
+            //           child: const Padding(
+            //             padding: EdgeInsets.symmetric(
+            //               vertical: 14.5,
+            //               horizontal: 14.5,
+            //             ),
+            //             child: Text(
+            //               'Sign up',
+            //               style: TextStyle(
+            //                 color: Colors.white,
+            //                 fontFamily: 'RF Dewi',
+            //                 fontWeight: FontWeight.w600,
+            //                 fontSize: 16,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         );
       }

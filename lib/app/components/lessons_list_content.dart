@@ -57,7 +57,7 @@ class LessonsListContent extends StatelessWidget {
                           vertical: 14.5,
                         ),
                         child: Text(
-                          'Attempt quiz',
+                          'Пройти тест',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'RF Dewi',

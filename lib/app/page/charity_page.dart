@@ -52,7 +52,7 @@ class CharityPage extends StatelessWidget{
                         const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Who needs your help?',
+                            'Кто нуждается в вашей помощи?',
                             style:  TextStyle(
                               color: Colors.white,
                               fontFamily: 'RF Dewi',
@@ -75,7 +75,7 @@ class CharityPage extends StatelessWidget{
                               color: Colors.white,
                             ),
                             child: const Text(
-                              'A lot of people without an opportunity to study dream of this!',
+                              'Множество людей без возможности обучения мечтают об этом!',
                               style: TextStyle(
                                 color: Color(0xFF3E3E3E),
                                 fontFamily: 'Geometria',
@@ -87,9 +87,9 @@ class CharityPage extends StatelessWidget{
                         ),
                         const SizedBox(height: 33.83),
                         const Text(
-                          'In any moment you can help people in need, giving them an opportunity to break into the light.\n\n'
-                              'All of the money go exclusively to people in need, the app doesn\'t take interest!\n\n'
-                              'Payment details are given below.',
+                          'В лбой момент ты можешь помочь нуждающимся, давая им возможность пробиться в свет.\n\n'
+                              'Все деньги идут исключительно нуждающимся, приложение не берёт процентов!\n\n'
+                              'Реквезиты предоставлены ниже.',
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Geometria',

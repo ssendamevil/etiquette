@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:async/async.dart';
 import 'package:etiquette/app/bloc/quiz/quiz_bloc.dart';
 import 'package:etiquette/app/components/charity_dialog.dart';
 import 'package:etiquette/app/page/learning_page.dart';
@@ -7,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:format/format.dart';
 
 class QuizPage extends StatelessWidget {
   final int quizId;
@@ -43,6 +47,7 @@ class QuizViewState extends State<QuizView> {
   List<int>? answers;
   late CharityDialog _charityDialog;
   bool? charityShow;
+  Timer? timer;
 
   @override
   void initState() {
@@ -78,7 +83,8 @@ class QuizViewState extends State<QuizView> {
                         child: Column(
                           children: [
                             Text(
-                              '$timerMinutes:$timerSeconds:$timerMilliseconds',
+                              format('{:02d}:{:02d}:{:02d}', timerMinutes,
+                                  timerSeconds, timerMilliseconds),
                               style: const TextStyle(
                                 color: Color(0xFF2F2F2F),
                                 fontFamily: 'Geometria',
@@ -92,7 +98,7 @@ class QuizViewState extends State<QuizView> {
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 26),
                               child: Text(
-                                'You have 15 minutes for attempt',
+                                'На прохождения теста дается 15 минут!',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Color(0xFF2F2F2F),
@@ -104,7 +110,7 @@ class QuizViewState extends State<QuizView> {
                             ),
                             const SizedBox(height: 28.34),
                             const Text(
-                              'Also, when you try to minimize the app, the quiz will automatically end',
+                              'Также при попытке свернуть приложение тест автоматически завершится',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Color(0xFFA0A3BD),
@@ -134,7 +140,7 @@ class QuizViewState extends State<QuizView> {
                                             vertical: 14.5,
                                           ),
                                           child: Text(
-                                            'Attempt quiz',
+                                            'Пройти тест',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'RF Dewi',
@@ -178,7 +184,7 @@ class QuizViewState extends State<QuizView> {
                                               vertical: 14.5,
                                             ),
                                             child: Text(
-                                              'Return',
+                                              'Вернуться назад',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontFamily: 'RF Dewi',
@@ -215,6 +221,7 @@ class QuizViewState extends State<QuizView> {
                       ),
                     );
                     if (currentQuestion == quiz!.questions.length) {
+                      timer!.cancel();
                       return Padding(
                         padding: const EdgeInsets.only(
                           bottom: 66,
@@ -247,8 +254,8 @@ class QuizViewState extends State<QuizView> {
                                     const EdgeInsets.symmetric(horizontal: 26),
                                 child: Text(
                                   (state.result! >= 80)
-                                      ? 'Quiz completed successfully'
-                                      : 'Quiz failed',
+                                      ? 'Тест успешно пройден'
+                                      : 'Тест не пройден',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     color: Color(0xFF2F2F2F),
@@ -263,8 +270,8 @@ class QuizViewState extends State<QuizView> {
                                     const EdgeInsets.symmetric(horizontal: 26),
                                 child: Text(
                                   (state.result! >= 80)
-                                      ? 'Congratulations! You have successfully completed the quiz and can now view more materials'
-                                      : 'You made one or more mistakes. Retake the quiz or review learned materials',
+                                      ? 'Поздравляем! Вы успешно завершили тест и теперь можете просматривать следующие этапы'
+                                      : 'Вы допустили одну или несколько ошибок. Перепройдите тест или повторите изученный материал',
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     color: Color(0xFFA0A3BD),
@@ -306,7 +313,7 @@ class QuizViewState extends State<QuizView> {
                                                 vertical: 14.5,
                                               ),
                                               child: Text(
-                                                'Go home',
+                                                'Вернуться на главную',
                                                 style: TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: 'RF Dewi',
@@ -327,6 +334,9 @@ class QuizViewState extends State<QuizView> {
                           ),
                         ),
                       );
+                    }
+                    if (timer == null){
+                      _timer(quiz.questions.length);
                     }
                     return Padding(
                       padding: const EdgeInsets.only(
@@ -372,7 +382,8 @@ class QuizViewState extends State<QuizView> {
                             // ),
                             const SizedBox(height: 28.545),
                             Text(
-                              '$timerMinutes:$timerSeconds:$timerMilliseconds',
+                              format('{:02d}:{:02d}:{:02d}', timerMinutes,
+                                  timerSeconds, timerMilliseconds),
                               style: const TextStyle(
                                 color: Color(0xFF2F2F2F),
                                 fontFamily: 'Geometria',
@@ -384,7 +395,7 @@ class QuizViewState extends State<QuizView> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Question №${currentQuestion + 1}',
+                                'Вопрос №${currentQuestion + 1}',
                                 style: const TextStyle(
                                   color: Color(0xFF2F2F2F),
                                   fontFamily: 'Geometria',
@@ -492,7 +503,7 @@ class QuizViewState extends State<QuizView> {
                                             vertical: 14.5,
                                           ),
                                           child: Text(
-                                            'Next',
+                                            'Далее',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontFamily: 'RF Dewi',
@@ -539,7 +550,7 @@ class QuizViewState extends State<QuizView> {
                                               vertical: 14.5,
                                             ),
                                             child: Text(
-                                              'Back',
+                                              'Назад',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontFamily: 'RF Dewi',
@@ -563,23 +574,25 @@ class QuizViewState extends State<QuizView> {
               },
             ),
           ),
-          BlocListener<QuizBloc, QuizState>(
-            listener: _timer,
-            child: Container(),
-          ),
         ],
       ),
     );
   }
 
-  void _timer(BuildContext context, QuizState state) {
-    if (timerMinutes == 0 && timerSeconds == 0 && timerMilliseconds == 0) {
+  void _timer(int questionsNumber) {
+    if (timerMinutes == 0 && timerSeconds == 0 && timerMilliseconds == 0){
       return;
     }
-
-    if (state.state == QuizStateType.success) {
-      setState(() {
-        if (currentQuestion < state.quiz!.questions.length) {
+    timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+      if (timerMinutes == 0 && timerSeconds == 0 && timerMilliseconds == 0) {
+        _bloc.add(QuizCompleted(
+          widget.quizId,
+          answers,
+        ));
+        setState(() => currentQuestion = questionsNumber);
+        timer.cancel();
+      } else {
+        setState((){
           timerMilliseconds -= 1;
           if (timerMilliseconds == -1) {
             timerMilliseconds = 99;
@@ -592,8 +605,8 @@ class QuizViewState extends State<QuizView> {
               }
             }
           }
-        }
-      });
-    }
+        });
+      }
+    });
   }
 }

@@ -64,7 +64,7 @@ class LearningViewState extends State<LearningView> {
                   child: Image.asset('assets/star_black.png'),
                 ),
                 const Text(
-                  'Learning',
+                  'Обучение',
                   style: TextStyle(
                     fontFamily: 'Geometria',
                     fontSize: 20,
