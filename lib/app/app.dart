@@ -6,9 +6,11 @@ import 'package:etiquette/data/db/box_helper.dart';
 import 'package:etiquette/data/repository/data_auth_repository.dart';
 import 'package:etiquette/data/repository/data_learning_repository.dart';
 import 'package:etiquette/data/repository/data_quiz_repository.dart';
+import 'package:etiquette/data/repository/data_user_repository.dart';
 import 'package:etiquette/domain/repository/auth_repository.dart';
 import 'package:etiquette/domain/repository/learning_repository.dart';
 import 'package:etiquette/domain/repository/quiz_repository.dart';
+import 'package:etiquette/domain/repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,6 +36,9 @@ class App extends StatelessWidget {
         ),
         RepositoryProvider<QuizRepository>(
           create: (context) => DataQuizRepository(_dio),
+        ),
+        RepositoryProvider<UserRepository>(
+          create: (context) => DataUserRepository(_dio),
         ),
       ],
       child: const AppView(),
@@ -69,6 +74,6 @@ class AppViewState extends State<AppView> {
         BoxHelper.getPositionId() == null) {
       return const PositionTypePage();
     }
-    return const PositionTypePage();//return const LearningPage(); TODO: Need to replace
+    return const PositionTypePage(); //return const LearningPage(); TODO: Need to replace
   }
 }
